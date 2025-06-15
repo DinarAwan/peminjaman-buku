@@ -78,14 +78,24 @@
             </div>
           </div>
         </div>
-        {{-- <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div class="sm:col-span-3">
-            <label for="foto" class="block text-sm/6 font-medium text-gray-900">Foto</label>
+          <label for="foto" class="block text-sm/6 font-medium text-gray-900">Cover</label>
+            @if ($buku->foto)
+              <img class="w-20 h-34 text-center justify-center shadow-2xl rounded-md" style="width: 100px; height: 150px;" src="{{url('foto'). '/' . $buku->foto}}" alt="">
+            @else
+              <img class="w-20 h-34 text-center justify-center shadow-2xl rounded-md" src="{{ asset('gambar/cover-not-found.png') }}" alt="">
+            @endif
+          </div>
+        </div>
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="sm:col-span-3">
+            <label for="foto" class="block text-sm/6 font-medium text-gray-900">Ganti Cover</label>
             <div class="mt-2">
               <input type="file" name="foto" id="foto" step="0.01" min="0" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
             </div>
           </div>
-        </div> --}}
+        </div>
       </div>
         
         

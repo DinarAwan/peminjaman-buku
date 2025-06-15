@@ -9,4 +9,6 @@ interface UserRepository extends Repository{
     public function getAllUsers();
     public function getUserById($id);
     public function findUserByEmail(string $email);
+
+    public function register(array $credentials);
 }

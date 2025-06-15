@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\Buku\BukuService;
 use App\Services\Kategori\KategoriService;
 use App\Services\User\UserService;
+use App\Models\Peminjaman;
 
 class DashboardController extends Controller
 {
@@ -24,10 +25,12 @@ class DashboardController extends Controller
         $buku = $this->bukuService->getAllBuku()->count();
         $kategori = $this->kategoriService->getAllKategori()->count();
         $users = $this->userService->getAllUsers()->where('role', '!=', 'admin')->count();
+        $peminjaman = Peminjaman::all()->count();
         return view('dashboard.admin', [
             'buku' => $buku,
             'kategori' => $kategori,
-            'users' => $users
+            'users' => $users,
+            'peminjaman' => $peminjaman
         ]);
     }
 

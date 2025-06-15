@@ -45,4 +45,36 @@ class SessionController extends Controller
         Auth::logout();
         return redirect('/sesi');
     }
+
+    public function register(){
+        return view('auth.register');
+    }
+
+    public function create(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $reg = [
+            'name' => $request->name,
+            'password' => $request->password,
+            'email' => $request->email,
+        ];
+
+        $this->userService->register($reg);
+
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+
+        if ($this->userService->login($credentials)) {
+            return $this->userService->redirectBasedOnRole(Auth::user());
+        }
+
+        return back()->withErrors(['email' => 'Gagal mendaftar, Silahkan coba Lagi']);
+        
+    }
 }

@@ -84,7 +84,7 @@
                 <div>
                   <p class="mb-0 font-sans font-semibold leading-normal text-sm">Buku Di Pinjam</p>
                   <h5 class="mb-0 font-bold">
-                    53
+                    {{$peminjaman}}
                     <span class="leading-normal text-sm font-weight-bolder text-lime-500"></span>
                   </h5>
                 </div>

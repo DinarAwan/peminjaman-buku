@@ -15,7 +15,9 @@ class Buku extends Model
         'tahun_terbit',
         'isbn',
         'kategori_id',
-        'jumlah'
+        'jumlah',
+        'deskripsi',
+        'foto',
     ];
 
     public function kategori(){
@@ -24,7 +26,7 @@ class Buku extends Model
 
     public function dipinjamOleh(){
         return $this->belongsToMany(User::class, 'peminjaman', )
-                    ->withPivot('tanggal_pinjam', 'tanggal_kembali')
+                    ->withPivot('tanggal_pinjam', 'tanggal_kembali', 'status')
                     ->withTimestamps();
     }
 }

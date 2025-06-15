@@ -31,8 +31,7 @@ class UserServiceImplement extends ServiceApi implements UserService{
       $this->mainRepository = $mainRepository;
     }
 
-    public function getAllUsers()
-    {
+    public function getAllUsers(){
         return $this->mainRepository->getAllUsers();
     }
     public function getUserById($id){
@@ -40,7 +39,6 @@ class UserServiceImplement extends ServiceApi implements UserService{
     }
     public function login(array $credentials){
         $user = $this->mainRepository->findUserByEmail($credentials['email']);
-        
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
             return false;
         }
@@ -56,10 +54,13 @@ class UserServiceImplement extends ServiceApi implements UserService{
             return redirect('dashboard/staf');
         }
     }
-
-    public function logout()
-    {
+    public function logout(){
         Auth::logout();
         return true;
     }
+
+    public function register(array $credentials){
+        return $this->mainRepository->register($credentials);
+    }
+    
 }

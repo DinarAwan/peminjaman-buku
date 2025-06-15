@@ -21,13 +21,13 @@
     @include('layout-pengguna.partials.link')
     </head>
 
-  <body class="m-0 font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
+  <body class="m-0 font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500 min-h-screen flex flex-col">
     <!-- sidenav  -->
   @include('layout-pengguna.partials.sidebar')
 
     <!-- end sidenav -->
 
-    <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
+    <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200 flex-grow">
       <!-- Navbar -->
      @include('layout-pengguna.partials.navbar')
 
@@ -35,16 +35,16 @@
 
       <!-- cards -->
       @if (session('success'))
-    <div class="mb-4 px-4 py-3 rounded-lg bg-green-100 text-green-800 border border-green-300">
-        {{ session('success') }}
-    </div>
-@endif
+        <div class="mb-4 px-4 py-3 rounded-lg bg-green-100 text-green-800 border border-green-300">
+          {{ session('success') }}
+        </div>
+      @endif
 
-@if (session('error'))
-    <div class="mb-4 px-4 py-3 rounded-lg bg-red-100 text-red-800 border border-red-300">
-        {{ session('error') }}
-    </div>
-@endif
+      @if (session('error'))
+        <div class="mb-4 px-4 py-3 rounded-lg bg-red-100 text-red-800 border border-red-300">
+          {{ session('error') }}
+        </div>
+      @endif
       @yield('content')
       <!-- end cards -->
     </main>

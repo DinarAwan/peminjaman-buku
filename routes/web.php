@@ -5,6 +5,7 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Models\User;
 use GuzzleHttp\Cookie\SessionCookieJar;
@@ -37,9 +38,17 @@ Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard'
 
 Route::get('/sesi', [SessionController::class, 'login'])->name('login');
 Route::post('/sesi', [SessionController::class, 'authenticate'])->name('authenticate');
+Route::get('/sesi/register', [SessionController::class, 'register']);
+Route::post('/sesi/create/', [SessionController::class, 'create']);
 Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
 
 Route::post('pinjam', [PeminjamanController::class, 'peminjaman'])->name('pinjam.buku');
 Route::get('log-peminjaman', [PeminjamanController::class, 'tampilkanLogPeminjaman']);
 Route::post('kembalikan-buku', [PeminjamanController::class, 'kembalikanBuku'])->name('kembalikan-buku');
-Route::get('/detail-buku', [PeminjamanController::class, 'detailBuku']);
+Route::post('setujui-peminjaman-buku', [PeminjamanController::class, 'setujuiPeminjaman'])->name('setujui-peminjaman-buku');
+Route::post('hapus-peminjaman', [PeminjamanController::class, 'hapusPeminjaman'])->name('hapus-peminjaman');
+Route::get('/detail-buku/{id}', [PeminjamanController::class, 'detailBuku'])->name('detail-buku');
+Route::get('tiket', [PeminjamanController::class, 'tiketYangDiMiliki'])->name('tiket-yang-dimiliki');
+Route::get('detail-tiket/{id}', [PeminjamanController::class, 'detailTiket'])->name('tiket.detail');
+
+Route::get('profile-pengguna', [ProfileController::class, 'index']);

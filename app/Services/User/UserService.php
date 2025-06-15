@@ -10,4 +10,6 @@ interface UserService extends BaseService{
     public function getUserById($id);
     public function login(array $credentials);
     public function logout();
+
+    public function register(array $credentials);
 }

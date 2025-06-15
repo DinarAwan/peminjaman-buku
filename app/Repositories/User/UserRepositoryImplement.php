@@ -31,4 +31,9 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
     {
         return $this->model->where('email', $email)->first();
     }
+
+    public function register(array $credentials){
+        return $this->model->create($credentials);
+    }
+
 }

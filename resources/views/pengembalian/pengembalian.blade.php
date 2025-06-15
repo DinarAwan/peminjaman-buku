@@ -4,7 +4,7 @@
     <div class="flex-none w-full max-w-full px-3">
       <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
         <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-          <a href="/buku/create" class="p-2 end rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Tambah</a>
+          {{-- <a href="/buku/create" class="p-2 end rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Tambah</a> --}}
   
           <h6 class="mt-5">Daftar Peminjaman</h6>
   
@@ -68,9 +68,23 @@
                             Kembalikan
                         </button>
                     </form>
-                    
-                    <a href="" class="text-xs font-semibold leading-tight text-red-600 p-2" onclick="return confirm('Yakin ingin menghapus buku ini? '). $item->kategori"> Hapus </a>
-                    <a href="#" class="text-xs font-semibold leading-tight text-slate-400 p-2"> Detail </a>
+
+                    <form action="{{ route('setujui-peminjaman-buku') }}" method="POST" onsubmit="return confirm('Yakin ingin approve buku ini?')" style="display:inline">
+                      @csrf
+                      <input type="hidden" name="buku_id" value="{{ $item->buku->id }}">
+                      <input type="hidden" name="user_id" value="{{ $item->user->id }}">
+                      <button type="submit" class="text-xs font-semibold leading-tight text-green-600 p-2 bg-transparent border-none cursor-pointer hover:underline">
+                          Approve
+                      </button>
+                    </form>
+                    <form action="{{ route('hapus-peminjaman') }}" method="POST" onsubmit="return confirm('Yakin ingin approve buku ini?')" style="display:inline">
+                      @csrf
+                      <input type="hidden" name="buku_id" value="{{ $item->buku->id }}">
+                      <input type="hidden" name="user_id" value="{{ $item->user->id }}">
+                      <button type="submit" class="text-xs font-semibold leading-tight text-red-600 p-2 bg-transparent border-none cursor-pointer hover:underline">
+                          Hapus
+                      </button>
+                    </form>
                   </td>
                 </tr>
                     

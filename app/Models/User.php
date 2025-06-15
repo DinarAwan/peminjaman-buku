@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'alamat',
     ];
 
     /**
@@ -49,7 +50,7 @@ class User extends Authenticatable
 
     public function bukuDipinjam(){
         return $this->belongsToMany(Buku::class, 'peminjaman', 'user_id', 'buku_id')
-                    ->withPivot('tanggal_pinjam', 'tanggal_kembali')
+                    ->withPivot('tanggal_pinjam', 'tanggal_kembali', 'status')
                     ->withTimestamps();
     }
 }
