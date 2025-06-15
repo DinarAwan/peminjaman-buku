@@ -1,12 +1,6 @@
-+============================================+
-
-|     Sistem Management Peminjaman Buku      |
-
-+============================================+
-
 CARA MENJALANKAN APLIKASINYA
 1 pastikan sudah instal composer-setup
-2 git clone repository ini
+2 git clone
 3 buka terminal dan arahkan ke project
     - Jalankan "composer install" di terminal
     - Jalankan "cp .env.example .env" di terminal
