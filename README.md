@@ -1,6 +1,9 @@
 +============================================+
+
 |     Sistem Management Peminjaman Buku      |
+
 +============================================+
+
 CARA MENJALANKAN APLIKASINYA
 1 pastikan sudah instal composer-setup
 2 git clone repository ini
