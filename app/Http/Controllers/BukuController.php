@@ -17,8 +17,13 @@ class BukuController extends Controller
             $this->kategoriService = $kategoriService
         ];
     }
-    public function index(){
-        $buku = $this->bukuService->getAllBuku();
+    public function index(Request $request){
+        if($request->has('search')){
+            $buku = $this->bukuService->searchBuku($request->search);
+            dd($buku);
+        }else{
+            $buku = $this->bukuService->getAllBuku();
+        }
         return view('buku.index', ['buku' => $buku]);
     }
     public function create(){

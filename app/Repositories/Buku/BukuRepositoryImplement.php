@@ -46,4 +46,10 @@ class BukuRepositoryImplement extends Eloquent implements BukuRepository{
         }
         return false;
     }
+    public function searchBuku($search){
+        return $this->model->where('judul', 'like', '%' . $search . '%')->orWhere('pengarang', 'like', '%' . $search . '%')
+        ->orWhereHas('kategori', function ($query) use ($search) {
+            $query->where('nama_kategori', 'like', '%' . $search . '%');
+        })->get();
+    }
 }

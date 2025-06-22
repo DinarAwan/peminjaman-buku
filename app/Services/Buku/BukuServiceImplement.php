@@ -48,4 +48,7 @@ class BukuServiceImplement extends ServiceApi implements BukuService{
     public function deleteBuku($id){
       return $this->mainRepository->deleteBuku($id);
     }
+    public function searchBuku($search){
+      return $this->mainRepository->searchBuku($search);
+    }
 }

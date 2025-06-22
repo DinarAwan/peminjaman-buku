@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Mpdf\Mpdf;
 use App\Models\Buku;
 use App\Models\User;
 use App\Models\Peminjaman;
@@ -23,8 +24,12 @@ class PeminjamanController extends Controller
             $this->userService = $userService
         ];
     }
-    public function index(){
+    public function index(Request $request){
+        if($request->has('search')){
+            $buku = $this->bukuService->searchBuku($request->search);
+        }else{
         $buku = $this->bukuService->getAllBuku();
+        }
         return view('pengguna.peminjaman.index', ['buku' => $buku]);
     }
 
@@ -137,6 +142,15 @@ class PeminjamanController extends Controller
             'user' => $user,
             'buku' => $buku
         ]);
+    }
+
+    public function tiketPenggunaToPdf(){
+
+        $mpdf = new Mpdf();
+        $mpdf->WriteHTML(
+            '<h1>Tiket Peminjaman Buku</h1>'
+        );
+        $mpdf->Output();
     }
 
     

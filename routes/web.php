@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\DashboardController;
@@ -50,5 +51,9 @@ Route::post('hapus-peminjaman', [PeminjamanController::class, 'hapusPeminjaman']
 Route::get('/detail-buku/{id}', [PeminjamanController::class, 'detailBuku'])->name('detail-buku');
 Route::get('tiket', [PeminjamanController::class, 'tiketYangDiMiliki'])->name('tiket-yang-dimiliki');
 Route::get('detail-tiket/{id}', [PeminjamanController::class, 'detailTiket'])->name('tiket.detail');
+Route::get('/pinjam/pdf', [PeminjamanController::class, 'tiketPenggunaToPdf'])->name('tiket-pengguna-to-pdf');
 
 Route::get('profile-pengguna', [ProfileController::class, 'index']);
+
+Route::get('/chatbot', [AiController::class, 'index'])->name('chatbot.index');
+Route::post('/tanya-ai', [AIController::class, 'tanyaAi']);

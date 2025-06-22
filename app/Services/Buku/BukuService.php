@@ -12,4 +12,5 @@ interface BukuService extends BaseService{
     public function createBuku(array $data);
     public function updateBuku($id, array $data);
     public function deleteBuku($id);
+    public function searchBuku($serach);
 }
