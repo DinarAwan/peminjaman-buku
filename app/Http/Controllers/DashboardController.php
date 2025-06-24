@@ -42,4 +42,13 @@ class DashboardController extends Controller
             'kategori' => $kategori
         ]);
     }
+
+    public function dashboardGuest(Request $request){
+        if($request->has('search')){
+            $buku = $this->bukuService->searchBuku($request->search);
+        }else{
+        $buku = $this->bukuService->getAllBuku();
+        }
+        return view('dashboard.guest-dashboard', ['buku' => $buku]);
+    }
 }

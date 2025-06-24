@@ -13,9 +13,10 @@ use GuzzleHttp\Cookie\SessionCookieJar;
 use Illuminate\Contracts\Session\Session;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [DashboardController::class, 'dashboardGuest'])->name('home');
 // untuk admin
 Route::get('/buku',[BukuController::class, 'index']);
 Route::get('/buku/create',[BukuController::class, 'create']);
@@ -24,6 +25,9 @@ Route::get('/buku/edit{id}',[BukuController::class, 'edit'])->name('buku.edit');
 Route::post('/buku/edit{id}',[BukuController::class, 'update'])->name('buku.update');
 Route::get('/buku/delete{id}',[BukuController::class, 'destroy'])->name('buku.delete');
 Route::get('buku/peminjaman',[BukuController::class, 'peminjaman'])->name('peminjaman.buku');
+
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 // untuk pengguna
 Route::get('/buku/peminjaman-pengguna',[PeminjamanController::class, 'index'])->name('peminjaman.buku.pengguna');
 Route::get('/dashboard-pengguna', [DashboardController::class, 'forPengguna'])->name('dashboard-pengguna');
@@ -34,8 +38,6 @@ Route::post('/kategori/create',[KategoriController::class, 'store']);
 Route::get('/kategori/delete{id}',[KategoriController::class, 'delete'])->name('kategori.delete');
 
 Route::get('/user', [SessionController::class, 'index'])->name('user.index');
-
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/sesi', [SessionController::class, 'login'])->name('login');
 Route::post('/sesi', [SessionController::class, 'authenticate'])->name('authenticate');
@@ -54,6 +56,7 @@ Route::get('detail-tiket/{id}', [PeminjamanController::class, 'detailTiket'])->n
 Route::get('/pinjam/pdf', [PeminjamanController::class, 'tiketPenggunaToPdf'])->name('tiket-pengguna-to-pdf');
 
 Route::get('profile-pengguna', [ProfileController::class, 'index']);
+Route::get('edit-profile', [ProfileController::class, 'editProfile'])->name('edit-profile');
 
 Route::get('/chatbot', [AiController::class, 'index'])->name('chatbot.index');
 Route::post('/tanya-ai', [AIController::class, 'tanyaAi']);

@@ -143,7 +143,7 @@
             <div class="relative right-0">
               <ul class="relative flex flex-wrap p-1 list-none bg-transparent rounded-xl" nav-pills role="tablist">
                 <li class="z-30 flex-auto text-center">
-                  <a class="z-30 block w-full px-0 py-1 mb-0 transition-all border-0 rounded-lg ease-soft-in-out bg-inherit text-slate-700" nav-link active href="javascript:;" role="tab" aria-selected="true">
+                  <a class="z-30 block w-full px-0 py-1 mb-0 transition-all border-0 rounded-lg ease-soft-in-out bg-inherit text-slate-700" nav-link active href="/edit-profile">
                     <svg class="text-slate-700" width="16px" height="16px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                         <g transform="translate(-2319.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -157,7 +157,7 @@
                         </g>
                       </g>
                     </svg>
-                    <span class="ml-1">App</span>
+                    <span class="ml-1">Edit Profile</span>
                   </a>
                 </li>
                 <li class="z-30 flex-auto text-center">

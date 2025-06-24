@@ -23,6 +23,8 @@ class User extends Authenticatable
         'password',
         'role',
         'alamat',
+        'foto_profile',
+        'foto_bacground',
     ];
 
     /**

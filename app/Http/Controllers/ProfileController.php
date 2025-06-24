@@ -12,4 +12,9 @@ class ProfileController extends Controller
         $user = Auth::user();
         return view('profile.profile-pengguna')->with('user', $user);
     }
+
+    public function editProfile(){
+        $user = Auth::user();
+        return view('profile.edit-profile')->with('user', $user);
+    }
 }
