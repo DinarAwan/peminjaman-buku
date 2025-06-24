@@ -72,6 +72,14 @@
               <div class="flex flex-col w-full max-w-full px-3 mx-auto md:flex-0 shrink-0 md:w-6/12 lg:w-5/12 xl:w-4/12">
                 <div class="relative flex flex-col min-w-0 mt-32 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border">
                   <div class="p-6 pb-0 mb-0 bg-transparent border-b-0 rounded-t-2xl">
+                    @if (session('error'))
+                    <div class="mb-4 flex items-center px-4 py-3 rounded-lg bg-red-50 text-red-700 border-l-4 border-red-400">
+                      <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                      </svg>
+                      {{ session('error') }}
+                    </div>
+                  @endif
                     <h3 class="relative z-10 font-bold text-transparent bg-gradient-to-tl from-blue-600 to-cyan-400 bg-clip-text">Selamat Datang Di Demen Baca</h3>
                     <p class="mb-0">Masukan email dan password untuk masuk ke halaman</p>
                   </div>

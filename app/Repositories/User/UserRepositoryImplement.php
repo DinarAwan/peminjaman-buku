@@ -21,7 +21,7 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
 
     public function getAllUsers()
     {
-        return $this->model->all();
+        return $this->model->where('role', '!=', 'admin')->get();
     }
     public function getUserById($id)
     {

@@ -39,6 +39,12 @@ class PeminjamanController extends Controller
         ]);
     
         $user = Auth::user();
+        $bukuStok = Buku::find($request->buku_id); // Ambil data buku
+
+        if ($bukuStok->jumlah < 1) {
+            return back()->with('error', 'Stok buku tidak tersedia.');
+        }
+
         $existing = $user->bukuDipinjam()
         ->where('buku_id', $request->buku_id)
         ->whereIn('status', ['dipinjam', 'pending'])
@@ -53,6 +59,8 @@ class PeminjamanController extends Controller
             'tanggal_kembali' => now()->addDays(7),
             'status' => 'pending', 
         ]);
+        $bukuStok->decrement('jumlah');
+        $bukuStok->save();
 
         $buku = $user->bukuDipinjam()->where('buku_id', $request->buku_id)->first();
     
@@ -64,6 +72,7 @@ class PeminjamanController extends Controller
         $bukuId = $request->buku_id;
 
         $user = User::findOrFail($userId);
+        $bukuStok = Buku::find($request->buku_id); // Ambil data buku
 
         $peminjaman = $user->bukuDipinjam()->where('buku_id', $bukuId)->wherePivot('status', 'pending')->first();
         if(!$peminjaman){
@@ -75,6 +84,8 @@ class PeminjamanController extends Controller
             'tanggal_pinjam' => now(),
             'tanggal_kembali' => now()->addDays(7)
         ]);
+        $bukuStok->increment('jumlah');
+        $bukuStok->save();
 
         return back()->with('success', 'Berhasil approve Pemnjaman');
     }

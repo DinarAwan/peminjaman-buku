@@ -20,7 +20,6 @@ class BukuController extends Controller
     public function index(Request $request){
         if($request->has('search')){
             $buku = $this->bukuService->searchBuku($request->search);
-            dd($buku);
         }else{
             $buku = $this->bukuService->getAllBuku();
         }

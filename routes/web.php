@@ -38,6 +38,7 @@ Route::post('/kategori/create',[KategoriController::class, 'store']);
 Route::get('/kategori/delete{id}',[KategoriController::class, 'delete'])->name('kategori.delete');
 
 Route::get('/user', [SessionController::class, 'index'])->name('user.index');
+Route::get('/user/delete/{id}', [SessionController::class, 'deleteUser'])->name('user.delete');
 
 Route::get('/sesi', [SessionController::class, 'login'])->name('login');
 Route::post('/sesi', [SessionController::class, 'authenticate'])->name('authenticate');
@@ -57,6 +58,7 @@ Route::get('/pinjam/pdf', [PeminjamanController::class, 'tiketPenggunaToPdf'])->
 
 Route::get('profile-pengguna', [ProfileController::class, 'index']);
 Route::get('edit-profile', [ProfileController::class, 'editProfile'])->name('edit-profile');
+Route::post('update-profile-pengguna', [ProfileController::class, 'updateProfilePengguna'])->name('update-profile-pengguna');
 
 Route::get('/chatbot', [AiController::class, 'index'])->name('chatbot.index');
 Route::post('/tanya-ai', [AIController::class, 'tanyaAi']);

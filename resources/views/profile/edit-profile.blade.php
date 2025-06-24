@@ -20,22 +20,25 @@
     <div class="mb-8">
         <div class="relative bg-gradient-to-r from-purple-400 to-pink-400 rounded-3xl overflow-hidden shadow-xl" id="backgroundPreview">
             <!-- Background overlay for better text contrast -->
-            <div class="absolute inset-0 bg-opacity-20" style="background-image: url('../assets/img/curved-images/curved0.jpg');>
-                
+            <div class="absolute inset-0 bg-opacity-20 min-h-75 bg-center" style="background-image: url('{{ $user->foto_bacground ? url('foto_bacground/' . $user->foto_bacground) : asset('assets/img/curved-images/curved0.jpg') }}'); background-size: cover;">
+                <span class="absolute inset-y-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-purple-700 to-pink-500 opacity-60"></span>
+
             </div>
             
             <!-- Profile content -->
             <div class="relative z-10 p-8 text-center text-white">
                 <div class="inline-block relative mb-4">
-                    <img id="profileImagePreview" 
-                         src="../assets/img/team-2.jpg" 
-                         alt="Profile" 
-                         class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover">
+
+                    @if ($user->foto_profile)
+                    <img alt="Profile" class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover" src="{{ url('foto_profile').'/'.$user->foto_profile}}" >
+                  @else
+                    <img alt="Profile" class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover" src="{{ asset('gambar/p-profile.jpg') }}">
+                  @endif
                     <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-green-400 rounded-full border-2 border-white flex items-center justify-center">
                         <span class="text-xs">✓</span>
                     </div>
                 </div>
-                <h2 id="usernamePreview" class="text-2xl font-bold mb-2">John Doe</h2>
+                <h2 id="usernamePreview" class="text-2xl font-bold mb-2">{{$user->name}}</h2>
                 <p class="text-purple-100">Member Perpustakaan</p>
             </div>
         </div>
@@ -43,7 +46,7 @@
 
     <!-- Edit Form -->
     <div class="bg-white rounded-3xl shadow-xl border border-gray-200 overflow-hidden">
-        <form id="editProfileForm" enctype="multipart/form-data">
+        <form id="editProfileForm" action="{{ route('update-profile-pengguna') }}" method="post" enctype="multipart/form-data">
             @csrf
             
             <!-- Form Header -->
@@ -63,17 +66,18 @@
                     
                     <div class="flex items-center gap-6">
                         <div class="flex-shrink-0">
-                            <img id="currentProfileImg" 
-                                 src="../assets/img/team-2.jpg" 
-                                 alt="Current Profile" 
-                                 class="w-20 h-20 rounded-full border-2 border-gray-300 object-cover">
+                            @if ($user->foto_profile)
+                    <img alt="Profile" class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover" src="{{ url('foto_profile').'/'.$user->foto_profile}}" >
+                  @else
+                    <img alt="Profile" class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover" src="{{ asset('gambar/p-profile.jpg') }}">
+                  @endif
                         </div>
                         
                         <div class="flex-1">
                             <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-purple-400 transition-colors duration-300">
                                 <input type="file" 
                                        id="profilePicture" 
-                                       name="profilePicture" 
+                                       name="foto_profile" 
                                        accept="image/*" 
                                        class="hidden">
                                 <label for="profilePicture" class="cursor-pointer">
@@ -90,33 +94,12 @@
                 <div class="space-y-4">
                     <label class="block text-lg font-semibold text-gray-800 mb-4">
                         🎨 Background Profile
-                    </label>
-                    
-                    <!-- Preset Background Options -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                        <div class="relative group cursor-pointer" data-bg="gradient-to-r from-purple-400 to-pink-400">
-                            <div class="w-full h-16 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg shadow-md group-hover:scale-105 transition-transform duration-200"></div>
-                            <div class="absolute inset-0 border-2 border-transparent group-hover:border-purple-500 rounded-lg transition-colors duration-200"></div>
-                        </div>
-                        <div class="relative group cursor-pointer" data-bg="gradient-to-r from-blue-400 to-purple-400">
-                            <div class="w-full h-16 bg-gradient-to-r from-blue-400 to-purple-400 rounded-lg shadow-md group-hover:scale-105 transition-transform duration-200"></div>
-                            <div class="absolute inset-0 border-2 border-transparent group-hover:border-purple-500 rounded-lg transition-colors duration-200"></div>
-                        </div>
-                        <div class="relative group cursor-pointer" data-bg="gradient-to-r from-green-400 to-blue-400">
-                            <div class="w-full h-16 bg-gradient-to-r from-green-400 to-blue-400 rounded-lg shadow-md group-hover:scale-105 transition-transform duration-200"></div>
-                            <div class="absolute inset-0 border-2 border-transparent group-hover:border-purple-500 rounded-lg transition-colors duration-200"></div>
-                        </div>
-                        <div class="relative group cursor-pointer" data-bg="gradient-to-r from-pink-400 to-red-400">
-                            <div class="w-full h-16 bg-gradient-to-r from-pink-400 to-red-400 rounded-lg shadow-md group-hover:scale-105 transition-transform duration-200"></div>
-                            <div class="absolute inset-0 border-2 border-transparent group-hover:border-purple-500 rounded-lg transition-colors duration-200"></div>
-                        </div>
-                    </div>
-
+                    </label>                   
                     <!-- Custom Background Upload -->
                     <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-purple-400 transition-colors duration-300">
                         <input type="file" 
                                id="backgroundImage" 
-                               name="backgroundImage" 
+                               name="foto_bacground" 
                                accept="image/*" 
                                class="hidden">
                         <label for="backgroundImage" class="cursor-pointer">
@@ -137,7 +120,7 @@
                     <div class="relative">
                         <input type="text" 
                                id="username" 
-                               name="username" 
+                               name="name" 
                                value="{{$user->name}}"
                                class="w-full px-4 py-4 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:border-purple-500 focus:bg-white focus:ring-4 focus:ring-purple-100 transition-all duration-300 text-gray-800 text-lg"
                                placeholder="Masukkan username baru...">
@@ -150,15 +133,16 @@
 
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
-                    <button type="button" 
-                            id="previewButton"
-                            class="flex-1 px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-2xl transition-colors duration-300 flex items-center justify-center gap-2">
-                        👁️ Preview Changes
-                    </button>
                     <button type="submit" 
                             class="flex-1 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2">
                         💾 Simpan Profile
-                    </button>
+                </button>
+                <a href="/profile-pengguna">
+                <button type="button" 
+                id="previewButton"
+                class="flex-1 px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-2xl transition-colors duration-300 flex items-center justify-center gap-2">
+                Ngga Jadi Deng
+                </button></a>
                 </div>
             </div>
         </form>
@@ -256,31 +240,31 @@ document.getElementById('previewButton').addEventListener('click', function() {
     }, 300);
 });
 
-// Form submission
-document.getElementById('editProfileForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+// // Form submission
+// document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+//     e.preventDefault();
     
-    // Get form data
-    const formData = new FormData(this);
+//     // Get form data
+//     const formData = new FormData(this);
     
-    // Show loading state
-    const submitButton = this.querySelector('button[type="submit"]');
-    const originalText = submitButton.innerHTML;
-    submitButton.innerHTML = '⏳ Menyimpan...';
-    submitButton.disabled = true;
+//     // Show loading state
+//     const submitButton = this.querySelector('button[type="submit"]');
+//     const originalText = submitButton.innerHTML;
+//     submitButton.innerHTML = '⏳ Menyimpan...';
+//     submitButton.disabled = true;
     
-    // Simulate API call (replace with actual endpoint)
-    setTimeout(() => {
-        // Success state
-        submitButton.innerHTML = '✅ Tersimpan!';
-        submitButton.className = submitButton.className.replace('from-purple-500 to-pink-500', 'from-green-500 to-emerald-500');
+//     // Simulate API call (replace with actual endpoint)
+//     setTimeout(() => {
+//         // Success state
+//         submitButton.innerHTML = '✅ Tersimpan!';
+//         submitButton.className = submitButton.className.replace('from-purple-500 to-pink-500', 'from-green-500 to-emerald-500');
         
-        // Reset after 2 seconds
-        setTimeout(() => {
-            submitButton.innerHTML = originalText;
-            submitButton.className = submitButton.className.replace('from-green-500 to-emerald-500', 'from-purple-500 to-pink-500');
-            submitButton.disabled = false;
-        }, 2000);
+//         // Reset after 2 seconds
+//         setTimeout(() => {
+//             submitButton.innerHTML = originalText;
+//             submitButton.className = submitButton.className.replace('from-green-500 to-emerald-500', 'from-purple-500 to-pink-500');
+//             submitButton.disabled = false;
+//         }, 2000);
         
         // Here you would typically send the data to your Laravel controller
         // fetch('/update-profile', {
@@ -291,8 +275,8 @@ document.getElementById('editProfileForm').addEventListener('submit', function(e
         //     }
         // });
         
-    }, 1500);
-});
+//     }, 1500);
+// });
 
 // Initialize preview on page load
 document.addEventListener('DOMContentLoaded', function() {

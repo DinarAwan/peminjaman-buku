@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\User\UserService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use App\Services\User\UserServiceImplement;
 
 class SessionController extends Controller
@@ -35,10 +36,10 @@ class SessionController extends Controller
         $credentials = $request->only('email', 'password');
         
         if ($this->userService->login($credentials)) {
-            return $this->userService->redirectBasedOnRole(Auth::user());
+            return $this->userService->redirectBasedOnRole(Auth::user())->with('success', 'Selamat datang, ' . Auth::user()->name);
         }
         
-        return back()->withErrors(['email' => 'Kredensial yang diberikan tidak cocok dengan catatan kami.']);
+        return back()->with('error', 'Mohon Maaf Kredensial yang diberikan tidak cocok dengan catatan kami. Silahkan coba lagi.');
     }
     public function logout()
     {
@@ -76,5 +77,13 @@ class SessionController extends Controller
 
         return back()->withErrors(['email' => 'Gagal mendaftar, Silahkan coba Lagi']);
         
+    }
+
+    public function deleteUser($id){
+        $hapusFotoDiFolder = $this->userService->getAllUsers()->where('id', $id)->first;
+        File::delete(public_path('foto_profile') . '/' . $hapusFotoDiFolder->foto_profile);
+        File::delete(public_path('foto_bacground') . '/' . $hapusFotoDiFolder->foto_bacground);
+        $this->userService->delete($id);
+        return redirect('user')->with('success', 'User berhasil di ban');
     }
 }
