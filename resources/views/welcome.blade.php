@@ -8,10 +8,6 @@
   <title>Document</title>
 </head>
 <body>
-  dinar sonian
-
-  <button class="bg-sky-500 hover:bg-sky-700 ...">
-    Save changes
-  </button>
+  <h1>DINAR SONIAWAN PALING JAGO CUYYYY</h1>
 </body>
 </html>

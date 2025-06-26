@@ -30,7 +30,7 @@
     <!-- Navbar -->
     <nav class="absolute top-0 z-30 flex flex-wrap items-center justify-between w-full px-4 py-2 mt-6 mb-4 shadow-none lg:flex-nowrap lg:justify-start">
       <div class="container flex items-center justify-between py-0 flex-wrap-inherit">
-        <a class="py-2.375 text-sm mr-4 ml-4 whitespace-nowrap font-bold text-white lg:ml-0" href="../pages/dashboard.html"> DEMEN BACA </a>
+        <a class="py-2.375 text-sm mr-4 ml-4 whitespace-nowrap font-bold text-white lg:ml-0" href="/"> DEMEN BACA </a>
         <button navbar-trigger class="px-3 py-1 ml-2 leading-none transition-all bg-transparent border border-transparent border-solid rounded-lg shadow-none cursor-pointer text-lg ease-soft-in-out lg:hidden" type="button" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="inline-block mt-2 align-middle bg-center bg-no-repeat bg-cover w-6 h-6 bg-none">
             <span bar1 class="w-5.5 rounded-xs duration-350 relative my-0 mx-auto block h-px bg-white transition-all"></span>
@@ -42,21 +42,21 @@
           <ul class="flex flex-col pl-0 mx-auto mb-0 list-none lg:flex-row xl:ml-auto">
             <li>
               <a class="flex items-center px-4 py-2 mr-2 font-normal text-white transition-all duration-250 lg-max:opacity-0 lg-max:text-slate-700 ease-soft-in-out text-sm lg:px-2 lg:hover:text-white/75" aria-current="page" 
-              href="../pages/dashboard.html">
+              href="/">
                 <i class="mr-1 text-white lg-max:text-slate-700 fa fa-chart-pie opacity-60"></i>
                 Dashboard
               </a>
             </li>
             <li>
               <a class="block px-4 py-2 mr-2 font-normal text-white transition-all duration-250 lg-max:opacity-0 lg-max:text-slate-700 ease-soft-in-out text-sm lg:px-2 lg:hover:text-white/75" 
-              href="../pages/sign-up.html">
+              href="/sesi/register">
                 <i class="mr-1 text-white lg-max:text-slate-700 fas fa-user-circle opacity-60"></i>
                 Sign Up
               </a>
             </li>
             <li>
               <a class="block px-4 py-2 mr-2 font-normal text-white transition-all duration-250 lg-max:opacity-0 lg-max:text-slate-700 ease-soft-in-out text-sm lg:px-2 lg:hover:text-white/75" 
-              href="../pages/sign-in.html">
+              href="/sesi">
                 <i class="mr-1 text-white lg-max:text-slate-700 fas fa-key opacity-60"></i>
                 Sign In
               </a>
@@ -64,7 +64,7 @@
           </ul>
           <ul class="hidden pl-0 mb-0 list-none lg:block lg:flex-row">
             <li>
-              <a href="#" class="leading-pro hover:scale-102 hover:shadow-soft-xs active:opacity-85 ease-soft-in text-xs tracking-tight-soft shadow-soft-md bg-gradient-to-tl from-gray-400 to-gray-100 rounded-3.5xl mb-0 mr-1 inline-block cursor-pointer border-0 bg-transparent px-8 py-2 text-center align-middle font-bold uppercase text-slate-800 transition-all">Documentation</a>
+              <a href="/documentation-guest" class="leading-pro hover:scale-102 hover:shadow-soft-xs active:opacity-85 ease-soft-in text-xs tracking-tight-soft shadow-soft-md bg-gradient-to-tl from-gray-400 to-gray-100 rounded-3.5xl mb-0 mr-1 inline-block cursor-pointer border-0 bg-transparent px-8 py-2 text-center align-middle font-bold uppercase text-slate-800 transition-all">Documentation</a>
             </li>
           </ul>
         </div>
@@ -73,7 +73,7 @@
 
     <main class="mt-0 transition-all duration-200 ease-soft-in-out">
       <section class="min-h-screen mb-32">
-        <div class="relative flex items-start pt-12 pb-56 m-4 overflow-hidden bg-center bg-cover min-h-50-screen rounded-xl" style="background-image: url('../assets/img/curved-images/curved14.jpg')">
+        <div class="relative flex items-start pt-12 pb-56 m-4 overflow-hidden bg-center bg-cover min-h-50-screen rounded-xl" style="background-image: url('../gambar/buku.jpg')">
           <span class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-gray-900 to-slate-800 opacity-60"></span>
           <div class="container z-10">
             <div class="flex flex-wrap justify-center -mx-3">

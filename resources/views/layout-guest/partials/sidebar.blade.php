@@ -52,7 +52,7 @@
           <div class="transition-all duration-200 ease-nav-brand">
             <h6 class="mb-0 text-white">Bantuan?</h6>
             <p class="mt-0 mb-4 font-semibold leading-tight text-xs">Buka Dokumentasi aplikasi ini</p>
-            <a href="#" class="inline-block w-full px-8 py-2 mb-0 font-bold text-center text-black uppercase transition-all ease-in bg-white border-0 border-white rounded-lg shadow-soft-md bg-150 leading-pro text-xs hover:shadow-soft-2xl hover:scale-102">Dokumentasi</a>
+            <a href="/documentation-guest" class="inline-block w-full px-8 py-2 mb-0 font-bold text-center text-black uppercase transition-all ease-in bg-white border-0 border-white rounded-lg shadow-soft-md bg-150 leading-pro text-xs hover:shadow-soft-2xl hover:scale-102">Dokumentasi</a>
           </div>
         </div>
       </div>
