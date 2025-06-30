@@ -31,6 +31,10 @@ Route::get('buku/peminjaman',[BukuController::class, 'peminjaman'])->name('pemin
 
 //dashboard admin
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(AdminMiddleware::class);
+Route::get('/profile-admin', [ProfileController::class, 'profileAdmin']);
+Route::get('/edit-profile-admin', [ProfileController::class, 'editProfileAdmin'])->name('edit-profile-admin');
+Route::post('/edit-profile-admin', [ProfileController::class, 'updateProfileAdmin'])->name('update-profile-admin');
+
 
 //untuk admin-pengelola peminjaman
 Route::get('log-peminjaman', [PeminjamanController::class, 'tampilkanLogPeminjaman'])->middleware(AdminMiddleware::class);
