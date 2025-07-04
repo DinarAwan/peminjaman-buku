@@ -58,7 +58,7 @@
                             Pengenalan Sistem
                         </h2>
                         <div class="prose max-w-none">
-                            <p class="text-gray-600 mb-4 text-sm sm:text-base">Selamat datang di sistem perpustakaan DEMEN BACA! Sistem ini dirancang untuk memudahkan Anda dalam meminjam dan mengelola koleksi buku perpustakaan.</p>
+                            <p class="text-gray-600 mb-4 text-sm sm:text-base">Selamat datang di sistem perpustakaan DEMEN BACA! Sistem ini dirancang untuk memudahkan Anda dalam meminjam dan mengelola koleksi buku perpustakaan. bersama Demen Baca kita majukan generasi indonesia</p>
                             <div class="bg-gradient-to-r from-pink-50 to-purple-50 border-l-4 border-gradient-to-b border-primary p-3 sm:p-4 rounded-r-lg">
                                 <h4 class="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Fitur Utama:</h4>
                                 <ul class="text-gray-600 space-y-1 text-xs sm:text-sm">
@@ -103,8 +103,15 @@
                             <div class="flex items-start space-x-3 sm:space-x-4">
                                 <div class="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-pink-100 to-purple-100 text-primary rounded-full flex items-center justify-center font-semibold text-xs sm:text-sm flex-shrink-0">4</div>
                                 <div>
-                                    <h4 class="font-semibold text-gray-900 text-sm sm:text-base">Konfirmasi Peminjaman</h4>
-                                    <p class="text-gray-600 text-xs sm:text-sm">Periksa detail peminjaman dan konfirmasi. Buku akan otomatis tercatat dalam daftar pinjaman Anda.</p>
+                                    <h4 class="font-semibold text-gray-900 text-sm sm:text-base">Tunggu Konfirmasi Peminjaman</h4>
+                                    <p class="text-gray-600 text-xs sm:text-sm">Periksa detail peminjaman atau detail tiket. Buku akan otomatis tercatat dalam daftar pinjaman Anda serta Anda akan mendapatkan tiket untuk mengambil buku.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3 sm:space-x-4">
+                                <div class="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-pink-100 to-purple-100 text-primary rounded-full flex items-center justify-center font-semibold text-xs sm:text-sm flex-shrink-0">5</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 text-sm sm:text-base">Ambil Buku</h4>
+                                    <p class="text-gray-600 text-xs sm:text-sm">Tunjukan tiket ke petugas untuk di scan dan anda langsung bisa mengambil buku</p>
                                 </div>
                             </div>
                         </div>
@@ -164,6 +171,11 @@
                                     <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white mx-auto mb-2 text-lg sm:text-xl">📚</div>
                                     <h4 class="font-semibold text-gray-900 text-xs sm:text-sm">Filter Kategori</h4>
                                     <p class="text-gray-600 text-xs">Filter berdasarkan genre buku</p>
+                                </div>
+                                <div class="text-center p-3 sm:p-4 bg-gradient-to-br from-pink-50 to-purple-50 rounded-lg">
+                                    <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white mx-auto mb-2 text-lg sm:text-xl">📚</div>
+                                    <h4 class="font-semibold text-gray-900 text-xs sm:text-sm">Filter Penerbit</h4>
+                                    <p class="text-gray-600 text-xs">Filter berdasarkan penerbit buku</p>
                                 </div>
                             </div>
                         </div>
@@ -272,8 +284,8 @@
                             <div class="bg-gradient-to-br from-pink-50 to-purple-50 p-3 sm:p-4 rounded-lg">
                                 <h4 class="font-semibold text-gray-900 mb-3 text-sm sm:text-base">📞 Informasi Kontak</h4>
                                 <div class="space-y-2 text-xs sm:text-sm text-gray-600">
-                                    <p><span class="font-medium">Telepon:</span> (0274) 123-4567</p>
-                                    <p><span class="font-medium">Email:</span> info@demenbaca.ac.id</p>
+                                    <p><span class="font-medium">Telepon:</span> (0857) 092-47100</p>
+                                    <p><span class="font-medium">Email:</span> 2400018188@webmail.uad.ac.id</p>
                                     <p><span class="font-medium">Alamat:</span> Jl. Perpustakaan No. 123, Yogyakarta</p>
                                 </div>
                             </div>

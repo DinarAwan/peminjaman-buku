@@ -7,12 +7,14 @@ use GuzzleHttp\Cookie\SessionCookieJar;
 use App\Http\Controllers\BukuController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Contracts\Session\Session;
+use App\Http\Controllers\KritikController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\DocumentationController;
+use App\Http\Controllers\MessageController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 // Route::get('/', function () {
@@ -67,6 +69,15 @@ Route::middleware(['auth'])->group(function(){
     
     Route::get('/chatbot', [AiController::class, 'index'])->name('chatbot.index');
     Route::post('/tanya-ai', [AIController::class, 'tanyaAi']);
+
+    Route::get('kritik', [KritikController::class, 'index'])->name('kritik.index');
+    Route::post('/kirim-kritik', [KritikController::class, 'kirimKritik'])->name('kirim-kritik');
+    Route::get('/draft-kritik', [KritikController::class, 'getAllKritik'])->name('darft-kritik');
+    Route::get('/delete-kritik/{id}', [KritikController::class, 'deleteKritik'])->name('kritik.delete');
+    Route::get('/kritik/detail/{id}', [KritikController::class, 'show'])->name('kritik.detail');
+
+    Route::get('forum', [MessageController::class, 'index'])->name('forum.index');
+    Route::post('/forum', [MessageController::class, 'kirimPesan'])->name('forum.kirim-pesan');
 
 });
 

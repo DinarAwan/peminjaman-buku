@@ -52,7 +52,7 @@ class ProfileController extends Controller
 
             $dataFoto = User::find($user->id);
             if ($dataFoto && $dataFoto->foto_bacground) {
-                File::delete(public_path('foto_bacground') . '/' . $dataFoto->foto_bacground);
+                File::delete(public_path(path: 'foto_bacground') . '/' . $dataFoto->foto_bacground);
             }
             $data['foto_bacground'] = $foto_nama; 
         }
