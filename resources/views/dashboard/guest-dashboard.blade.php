@@ -36,6 +36,10 @@
                     <div class="flex-auto p-4 pt-9 mt-9 text-center">
                         <h6 class="mb-0 text-center">{{$item->judul}}</h6>
                         <span class="leading-tight text-xs">{{$item->kategori->nama_kategori}}</span>
+                        <div class="flex items-center justify-center mt-2 mb-2">
+                            <span class="text-red-500 text-sm mr-1">♥</span>
+                            <span class="text-gray-600 text-sm">{{ $item->likes()->count() ?? 0 }}</span>
+                        </div>
                         <hr class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
                         <a class="inline w-1/2 px-1 py-3 my-2 font-bold text-center text-white uppercase align-middle transition-all ease-in border-0 rounded-lg select-none shadow-soft-md bg-150 bg-x-25 leading-pro text-xs bg-gradient-to-tl from-purple-700 to-pink-500 hover:shadow-soft-2xl hover:scale-102" href="{{ route('detail-buku', $item->id) }}">Detail</a>
                         <button onclick="return confirm('Yakin ingin meminjam buku ini? ')" type="submit" name="buku_id" value="{{ $item->id }}" class="inline-block w-1/2 px-1 py-3 my-2 font-bold text-center text-white uppercase align-middle transition-all ease-in border-0 rounded-lg select-none shadow-soft-md bg-150 bg-x-25 leading-pro text-xs bg-gradient-to-tl from-purple-700 to-pink-500 hover:shadow-soft-2xl hover:scale-102" >Pinjam</button>

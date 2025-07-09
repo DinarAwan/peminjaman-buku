@@ -20,7 +20,7 @@ class NewMessage implements ShouldBroadcast
      */
     public function __construct($message)
     {
-        $this->message = $message;
+        $this->message = $message->load('user');
     }
 
     /**
@@ -28,11 +28,10 @@ class NewMessage implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): array
+    public function broadcastOn()
     {
-        return [
-            new Channel('chat'),
-        ];
+        return new Channel('chat');
+        
     }
 
     public function broadcastAs()

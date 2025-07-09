@@ -27,7 +27,9 @@ class MessageController extends Controller
         ]);
         $data['user_id'] = $user ? $user->id : 'Pengunjung';
         $pesan = $this->messageService->createPesan($data);
+        if ($pesan) {
         broadcast(new NewMessage($pesan))->toOthers();
-        return redirect()->back();    
+        return redirect()->back(); 
+        }   
     }
 }

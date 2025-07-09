@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Mpdf\Mpdf;
 use App\Models\Buku;
+use App\Models\Like;
 use App\Models\User;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
@@ -105,7 +106,7 @@ class PeminjamanController extends Controller
     }
     $user->bukuDipinjam()->updateExistingPivot($bukuId, [
         'status' => 'dikembalikan',
-        'tanggal_kembali' => now(), // optional jika punya kolom ini
+        'tanggal_kembali' => now(), 
     ]);
     return back()->with('success', 'Buku berhasil dikembalikan');
     }
@@ -162,6 +163,37 @@ class PeminjamanController extends Controller
             '<h1>Tiket Peminjaman Buku</h1>'
         );
         $mpdf->Output();
+    }
+
+    public function likes(Buku $buku){
+        $sudahLike = Like::where('user_id', Auth::id())->where('buku_id', $buku->id)->first();
+
+        if(!$sudahLike){
+            Like::create([
+                'user_id' => Auth::id(),
+                'buku_id' => $buku->id,
+            ]);
+        }
+
+        return back();
+    }
+
+    public function unlike(Buku $buku){
+        Like::where('user_id', Auth::id())->where('buku_id', $buku->id)->delete();
+        return back();
+    }
+
+    public function komentar(Request $request, Buku $buku){
+        $request->validate([
+            'isi' => '|required|string|max:1000'
+        ]);
+
+        $buku->komentars()->create([
+            'user_id' => Auth::id(),
+            'isi' => $request->isi
+        ]);
+
+        return back();
     }
 
     

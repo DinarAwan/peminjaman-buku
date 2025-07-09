@@ -62,6 +62,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('tiket', [PeminjamanController::class, 'tiketYangDiMiliki'])->name('tiket-yang-dimiliki');
     Route::get('detail-tiket/{id}', [PeminjamanController::class, 'detailTiket'])->name('tiket.detail');
     Route::get('/pinjam/pdf', [PeminjamanController::class, 'tiketPenggunaToPdf'])->name('tiket-pengguna-to-pdf');
+    Route::post('/buku/peminjaman-pengguna/{buku}/like', [PeminjamanController::class, 'likes'])->name('buku.like');
+    Route::delete('/buku/peminjaman-pengguna/{buku}/unlike', [PeminjamanController::class, 'unlike'])->name('buku.unlike');
+    Route::post('/buku/peminjaman-pengguna/{buku}/komentar', [PeminjamanController::class, 'komentar'])->name('buku.komentar');
+
 
     Route::get('profile-pengguna', [ProfileController::class, 'index']);
     Route::get('edit-profile', [ProfileController::class, 'editProfile'])->name('edit-profile');
@@ -78,6 +82,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('forum', [MessageController::class, 'index'])->name('forum.index');
     Route::post('/forum', [MessageController::class, 'kirimPesan'])->name('forum.kirim-pesan');
+    
 
 });
 

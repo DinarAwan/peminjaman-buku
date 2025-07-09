@@ -59,16 +59,29 @@
                                         <div class="text-white text-sm leading-relaxed formatted-message">{{ $item->content }}</div>
                                         <div class="text-xs text-purple-200 mt-2">{{ $messageTime }}</div>
                                     </div>
+
+                                    @if ($item->user->foto_profile)
+                                        <img alt="profile_image" class="w-10 h-10 bg-gradient-to-br rounded-full flex items-center justify-center text-white text-sm font-semibold flex-shrink-0" src="{{ url('foto_profile').'/'.$item->user->foto_profile}}" >
+                                    @else
                                     <div class="w-10 h-10 bg-gradient-to-br {{ $avatarColor }} rounded-full flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
                                         {{ $avatarInitials }}
                                     </div>
+                                    @endif
+                                       
+                                    {{-- <div class="w-10 h-10 bg-gradient-to-br {{ $avatarColor }} rounded-full flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
+                                        {{ $avatarInitials }}
+                                    </div> --}}
                                 </div>
                             @else
                                 <!-- Other user message (left side) -->
                                 <div class="flex items-start gap-3 max-w-md">
-                                    <div class="w-10 h-10 bg-gradient-to-br {{ $avatarColor }} rounded-full flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
-                                        {{ $avatarInitials }}
-                                    </div>
+                                    @if ($item->user->foto_profile)
+                                    <img alt="profile_image" class="w-10 h-10 bg-gradient-to-br rounded-full flex items-center justify-center text-white text-sm font-semibold flex-shrink-0" src="{{ url('foto_profile').'/'.$item->user->foto_profile}}" >
+                                @else
+                                <div class="w-10 h-10 bg-gradient-to-br {{ $avatarColor }} rounded-full flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
+                                    {{ $avatarInitials }}
+                                </div>
+                                @endif
                                     <div class="bg-white rounded-2xl rounded-tl-md px-4 py-3 border border-gray-200 shadow-sm">
                                         <div class="text-xs text-gray-500 mb-1 font-medium">{{ $item->user->name }}</div>
                                         <div class="text-gray-800 text-sm leading-relaxed formatted-message">{{ $item->content }}</div>

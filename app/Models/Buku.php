@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Like;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Buku extends Model
 {
@@ -28,5 +30,17 @@ class Buku extends Model
         return $this->belongsToMany(User::class, 'peminjaman', )
                     ->withPivot('tanggal_pinjam', 'tanggal_kembali', 'status')
                     ->withTimestamps();
+    }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+
+    public function isLikeBy($user){
+        return $this->likes()->where('user_id', $user->id)->exists();
+    }
+
+    public function komentars(){
+        return $this->hasMany(Komentar::class);
     }
 }

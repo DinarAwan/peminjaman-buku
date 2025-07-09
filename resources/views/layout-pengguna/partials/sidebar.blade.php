@@ -54,7 +54,7 @@
                   </g>
                 </svg>
               </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Peminjaman</span>
+              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Buku</span>
             </a>
           </li>
           <li class="mt-0.5 w-full">
