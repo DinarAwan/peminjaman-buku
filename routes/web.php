@@ -8,13 +8,14 @@ use App\Http\Controllers\BukuController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Contracts\Session\Session;
 use App\Http\Controllers\KritikController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\DocumentationController;
-use App\Http\Controllers\MessageController;
+use App\Http\Controllers\LaporanBulananController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 // Route::get('/', function () {
@@ -32,17 +33,22 @@ Route::get('/buku/delete{id}',[BukuController::class, 'destroy'])->name('buku.de
 Route::get('buku/peminjaman',[BukuController::class, 'peminjaman'])->name('peminjaman.buku')->middleware(AdminMiddleware::class);
 
 //dashboard admin
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(AdminMiddleware::class);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(AdminMiddleware::class);
 Route::get('/profile-admin', [ProfileController::class, 'profileAdmin']);
 Route::get('/edit-profile-admin', [ProfileController::class, 'editProfileAdmin'])->name('edit-profile-admin');
 Route::post('/edit-profile-admin', [ProfileController::class, 'updateProfileAdmin'])->name('update-profile-admin');
-
 
 //untuk admin-pengelola peminjaman
 Route::get('log-peminjaman', [PeminjamanController::class, 'tampilkanLogPeminjaman'])->middleware(AdminMiddleware::class);
 Route::post('kembalikan-buku', [PeminjamanController::class, 'kembalikanBuku'])->name('kembalikan-buku')->middleware(AdminMiddleware::class);
 Route::post('setujui-peminjaman-buku', [PeminjamanController::class, 'setujuiPeminjaman'])->name('setujui-peminjaman-buku')->middleware(AdminMiddleware::class);
 Route::post('hapus-peminjaman', [PeminjamanController::class, 'hapusPeminjaman'])->name('hapus-peminjaman')->middleware(AdminMiddleware::class);
+
+//admin mengelola laporan bulanan
+Route::get('/laporan-bulanan', [LaporanBulananController::class, 'index'])->name('laporan-bulanan.index');
+Route::get('/laporan-bulanan/create', [LaporanBulananController::class, 'create'])->name('laporan-bulanan.create');
+Route::post('/laporan-bulanan/store', [LaporanBulananController::class, 'store'])->name('laporan-bulanan.store');
+Route::get('/laporan-bulanan/show/{id}', [LaporanBulananController::class, 'show'])->name('laporan-bulanan.show');
 
 // untuk pengguna
 Route::middleware(['auth'])->group(function(){
@@ -66,7 +72,6 @@ Route::middleware(['auth'])->group(function(){
     Route::delete('/buku/peminjaman-pengguna/{buku}/unlike', [PeminjamanController::class, 'unlike'])->name('buku.unlike');
     Route::post('/buku/peminjaman-pengguna/{buku}/komentar', [PeminjamanController::class, 'komentar'])->name('buku.komentar');
 
-
     Route::get('profile-pengguna', [ProfileController::class, 'index']);
     Route::get('edit-profile', [ProfileController::class, 'editProfile'])->name('edit-profile');
     Route::post('update-profile-pengguna', [ProfileController::class, 'updateProfilePengguna'])->name('update-profile-pengguna');
@@ -83,9 +88,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('forum', [MessageController::class, 'index'])->name('forum.index');
     Route::post('/forum', [MessageController::class, 'kirimPesan'])->name('forum.kirim-pesan');
     
-
 });
-
 
 Route::get('/sesi', [SessionController::class, 'login'])->name('login');
 Route::post('/sesi', [SessionController::class, 'authenticate'])->name('authenticate');

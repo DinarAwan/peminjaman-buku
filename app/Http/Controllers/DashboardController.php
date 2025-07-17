@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Services\Buku\BukuService;
-use App\Services\Kategori\KategoriService;
-use App\Services\User\UserService;
 use App\Models\Peminjaman;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Services\Buku\BukuService;
+use App\Services\User\UserService;
+use Illuminate\Support\Facades\DB;
+use Hamcrest\Number\OrderingComparison;
+use App\Services\Kategori\KategoriService;
 
 class DashboardController extends Controller
 {
@@ -26,11 +29,34 @@ class DashboardController extends Controller
         $kategori = $this->kategoriService->getAllKategori()->count();
         $users = $this->userService->getAllUsers()->where('role', '!=', 'admin')->count();
         $peminjaman = Peminjaman::all()->count();
+        $today = Carbon::now();
+
+        $totalBulanIni = DB::table('peminjaman')
+        ->whereMonth('tanggal_pinjam', now()->month)
+        ->whereYear('tanggal_pinjam', now()->year)
+        ->count();
+
+        $data = DB::table('peminjaman')
+        ->selectRaw('DATE(tanggal_pinjam) as tanggal, COUNT(*) as total')
+        // ->whereMonth('tanggal_pinjam', $today->month)                                                                                                                       //untuk hanya mengambil bulan ini - hilangkan ini jika inginmmengambil data secara penuh
+        // ->whereYear('tanggal_pinjam', $today->year)                                                                                                                        //untuk hanya mengambil bulan ini tetapi untuk memastian bulan yang di ambil di tahun ini - hilangkan ini jika inginmmengambil data secara penuh
+        ->groupBy('tanggal')
+        ->orderBy('tanggal')
+        ->get();
+
+        $labels = $data->pluck('tanggal')->map(function ($tanggal){
+            return Carbon::parse($tanggal)->translatedFormat('d F Y'); //l d F Y = senin 24 july 20205
+        });
+        $values = $data->pluck('total');
+
         return view('dashboard.admin', [
             'buku' => $buku,
             'kategori' => $kategori,
             'users' => $users,
-            'peminjaman' => $peminjaman
+            'peminjaman' => $peminjaman,
+            'labels' => $labels,
+            'values' => $values,
+            'totalBulanIni' => $totalBulanIni
         ]);
     }
 
@@ -51,4 +77,5 @@ class DashboardController extends Controller
         }
         return view('dashboard.guest-dashboard', ['buku' => $buku]);
     }
+
 }
